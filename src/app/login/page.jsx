@@ -13,7 +13,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch('https://task-manager-api.railway.app/login',   {
+      const res = await fetch('https://task-manager-api-production.up.railway.app/login',   {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
