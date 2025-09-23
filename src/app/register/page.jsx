@@ -13,7 +13,7 @@ export default function RegisterPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:5000/auth/register', {
+      const res = await fetch('https://task-manager-api.railway.app/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
