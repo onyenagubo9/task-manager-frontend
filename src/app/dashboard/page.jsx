@@ -30,7 +30,7 @@ export default function DashboardPage() {
   const fetchTasks = async () => {
     setLoading(true);
     try {
-      const res = await fetch('https://task-manager-api.railway.app/tasks', {
+      const res =  await fetch(`${API_URL}/tasks`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to fetch tasks');
