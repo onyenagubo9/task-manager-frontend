@@ -15,12 +15,12 @@ export default function DashboardPage() {
   const [formDescription, setFormDescription] = useState('');
   const [formStatus, setFormStatus] = useState('Pending');
   const [editingTaskId, setEditingTaskId] = useState(null);
+
   const router = useRouter();
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
-    
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
@@ -30,7 +30,7 @@ export default function DashboardPage() {
   const fetchTasks = async () => {
     setLoading(true);
     try {
-      const res =  await fetch(`${API_URL}/tasks`, {
+      const res = await fetch(`${API_URL}/tasks`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to fetch tasks');
@@ -54,8 +54,8 @@ export default function DashboardPage() {
     e.preventDefault();
     const method = editingTaskId ? 'PUT' : 'POST';
     const url = editingTaskId
-      ? `http://localhost:5000/tasks/${editingTaskId}`
-      : 'http://localhost:5000/tasks';
+      ? `${API_URL}/tasks/${editingTaskId}`
+      : `${API_URL}/tasks`;
 
     try {
       const res = await fetch(url, {
@@ -85,7 +85,7 @@ export default function DashboardPage() {
   const handleDelete = async (id) => {
     if (!confirm('Are you sure?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+      const res = await fetch(`${API_URL}/tasks/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -115,13 +115,13 @@ export default function DashboardPage() {
         </h1>
         
         <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-800">🧠 Task Manager Dashboard</h1>
-        <button
-          onClick={handleLogout}
-          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-        >
-          Logout
-        </button>
+          <h1 className="text-3xl font-bold text-gray-800">🧠 Task Manager Dashboard</h1>
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+          >
+            Logout
+          </button>
         </div>
 
         {/* Filter Buttons */}
