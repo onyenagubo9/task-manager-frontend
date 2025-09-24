@@ -16,6 +16,7 @@ export default function DashboardPage() {
   const [formStatus, setFormStatus] = useState('Pending');
   const [editingTaskId, setEditingTaskId] = useState(null);
   const router = useRouter();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
